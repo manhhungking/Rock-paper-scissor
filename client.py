@@ -23,7 +23,7 @@ class Button:
 
     def draw(self, win):
         pygame.draw.rect(win, self.colour, (self.x, self.y, self.width, self.height))
-        font = pygame.font.SysFont("verdana", 36)
+        font = pygame.font.SysFont("verdana", 30)
         text = font.render(self.text, 1, (255, 255, 255))
         win.blit(
             text,
@@ -56,7 +56,7 @@ def re_draw_window(win, game, player):
             text, (WIDTH / 2 - text.get_width() / 2, HEIGHT / 2 - text.get_height() / 2)
         )
     else:
-        font = pygame.font.SysFont("verdana", 60)
+        font = pygame.font.SysFont("verdana", 36)
         text = font.render("Your Move", 1, (0, 255, 255))
         win.blit(text, (80, 200))
 
