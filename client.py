@@ -107,12 +107,78 @@ buttons = [
 ]
 
 
-def main():
+# functions
+def introduction_screen():
     run = True
     clock = pygame.time.Clock()
-    network = Network()
+
+    while run:
+        clock.tick(60)
+        window.fill((144, 199, 255))
+        font = pygame.font.SysFont("verdana", 40)
+        text = font.render("Welcome to Rock-Paper-Scissors Game!", 1, (0, 5, 10))
+        window.blit(
+            text, (WIDTH / 2 - text.get_width() / 2, HEIGHT / 2 - text.get_height() / 2)
+        )
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                run = False
+            if event.type == pygame.MOUSEBUTTONUP:
+                run = False
+
+
+def menu_screen():
+    run = True
+    clock = pygame.time.Clock()
+
+    while run:
+        clock.tick(60)
+        window.fill((144, 199, 255))
+        font = pygame.font.SysFont("verdana", 40)
+        text = font.render("Choose an option:", 1, (0, 5, 10))
+        window.blit(
+            text, (WIDTH / 2 - text.get_width() / 2, HEIGHT / 4 - text.get_height() / 2)
+        )
+
+        button_play_random = Button("Play with Random Player", 150, 300, (51, 102, 0))
+        button_play_id = Button("Play with Specific ID", 150, 450, (0, 51, 102))
+
+        button_play_random.draw(window)
+        button_play_id.draw(window)
+
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                run = False
+            if event.type == pygame.MOUSEBUTTONUP:
+                position = pygame.mouse.get_pos()
+                if button_play_random.click(position):
+                    run = False
+                    play_game_with_id = False
+                elif button_play_id.click(position):
+                    run = False
+                    play_game_with_id = True
+
+    if play_game_with_id:
+        player_id = input("Enter the ID of the player you want to play with: ")
+    else:
+        player_id = None
+
+    network = Network(player_id)
     player = int(network.get_player())
     print("You are player number: {}".format(player))
+    introduction_screen()
+
+    main(network, player)
+
+
+def main(network, player):
+    run = True
+    clock = pygame.time.Clock()
 
     while run:
         clock.tick(60)
@@ -170,29 +236,6 @@ def main():
                                 network.send(button.text)
 
         re_draw_window(window, game, player)
-
-
-def menu_screen():
-    run = True
-    clock = pygame.time.Clock()
-
-    while run:
-        clock.tick(60)
-        window.fill((144, 199, 255))
-        font = pygame.font.SysFont("verdana", 60)
-        text = font.render("Click to Play!", 1, (0, 5, 10))
-        window.blit(
-            text, (WIDTH / 2 - text.get_width() / 2, HEIGHT / 2 - text.get_height() / 2)
-        )
-        pygame.display.update()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                run = False
-            if event.type == pygame.MOUSEBUTTONUP:
-                run = False
-
-    main()
 
 
 while True:
