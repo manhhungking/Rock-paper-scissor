@@ -173,8 +173,7 @@ def introduction_screen():
 
     intro_text1 = "Welcome to Rock-Paper-Scissors Online!"
     intro_text2 = "Gameplay: Each player has a maximum of 3 points,"
-    intro_text3 = "and the game runs for a maximum of 5 rounds."
-    intro_text4 = "The first player to reach 3 points wins the game."
+    intro_text3 = "and the first player that reaches 3 points wins the game."
 
     while run:
         clock.tick(60)
@@ -184,12 +183,10 @@ def introduction_screen():
         text1 = font.render(intro_text1, 1, (0, 5, 10))
         text2 = font.render(intro_text2, 1, (0, 5, 10))
         text3 = font.render(intro_text3, 1, (0, 5, 10))
-        text4 = font.render(intro_text4, 1, (0, 5, 10))
 
         window.blit(text1, (WIDTH / 2 - text1.get_width() / 2, 50))
         window.blit(text2, (WIDTH / 2 - text2.get_width() / 2, 100))
         window.blit(text3, (WIDTH / 2 - text3.get_width() / 2, 150))
-        window.blit(text4, (WIDTH / 2 - text4.get_width() / 2, 200))
 
         # Display buttons for options
         button_font = pygame.font.SysFont("verdana", 24)
