@@ -9,7 +9,7 @@ class Game:
         self.draws = 0
 
     def get_player_move(self, player):
-        """"
+        """ "
         :param player [0, 1]
         :return Move
         """
@@ -46,7 +46,10 @@ class Game:
             winner = 1
         elif p1 == "P" and p2 == "R":
             winner = 0
-
+        if winner == -1:
+            self.draws += 1
+        else:
+            self.wins[winner] += 1
         return winner
 
     def reset(self):
