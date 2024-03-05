@@ -7,12 +7,9 @@ class Game:
         self.moves = [None, None]
         self.wins = [0, 0]
         self.draws = 0
+        self.start = False
 
     def get_player_move(self, player):
-        """ "
-        :param player [0, 1]
-        :return Move
-        """
         return self.moves[player]
 
     def play(self, player, move):

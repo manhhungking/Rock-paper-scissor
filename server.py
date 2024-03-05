@@ -31,9 +31,9 @@ def threaded_client(conn, player, game_id):
                 if not data:
                     break
                 else:
-                    if data == 'reset':
+                    if data == "reset":
                         game.reset()
-                    elif data != 'get':
+                    elif data != "get":
                         game.play(player, data)
 
                     conn.sendall(pickle.dumps(game))
@@ -42,10 +42,10 @@ def threaded_client(conn, player, game_id):
         except:
             break
 
-    print('Lost connection with server')
+    print("Lost connection with server")
     try:
         del games[game_id]
-        print('Closing game', game_id)
+        print("Closing game", game_id)
     except:
         pass
     id_count -= 1
@@ -59,10 +59,10 @@ while True:
     id_count += 1
     current_player = 0
     # check if odd or even number of players already connected to determine whether new game should be created
-    game_id = (id_count - 1)//2
+    game_id = (id_count - 1) // 2
     if id_count % 2 == 1:
         games[game_id] = Game(game_id)
-        print("Created a new game")
+        print("Created a new game, id: ", game_id)
     else:
         games[game_id].ready = True
         current_player = 1
