@@ -33,7 +33,12 @@ def threaded_client(conn, player, game_id):
                 else:
                     if data == "reset":
                         game.reset()
+                    elif data == "soft-reset":
+                        game.softreset()
+                    elif data == "find-winner":
+                        game.winner()
                     elif data != "get":
+                        print("Data: ", data)
                         game.play(player, data)
 
                     conn.sendall(pickle.dumps(game))

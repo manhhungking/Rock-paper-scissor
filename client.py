@@ -297,19 +297,20 @@ def main(network):
         if game.both_went():
             re_draw_window(window, game, player)
             try:
-                game = network.send("reset")
+                game = network.send("soft-reset")
             except:
                 run = False
                 print("Could not retrieve game from server")
                 break
 
             font = pygame.font.SysFont("verdana", 90)
-            if (game.winner() == 1 and player == 1) or (
-                game.winner() == 0 and player == 0
-            ):
+            if player == 1:
+                game = network.send("find-winner")
+            winner = game.find_winner()
+            if (winner == 1 and player == 1) or (winner == 0 and player == 0):
                 text = font.render("You Win!", 1, (207, 181, 59))
 
-            elif game.winner() == -1:
+            elif winner == -1:
                 text = font.render("Draw!", 1, (211, 211, 211))
 
             else:
@@ -321,6 +322,7 @@ def main(network):
             )
             pygame.display.update()
             time.sleep(3)
+            network.send("soft-reset")
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

@@ -13,6 +13,8 @@ class Game:
         return self.moves[player]
 
     def play(self, player, move):
+        if move == "random":
+            return
         self.moves[player] = move
         if player == 0:
             self.p1_went = True
@@ -47,8 +49,34 @@ class Game:
             self.draws += 1
         else:
             self.wins[winner] += 1
+        print(self.wins, self.draws)
+        return winner
+
+    def find_winner(self):
+        p1 = self.moves[0].upper()[0]
+        p2 = self.moves[1].upper()[0]
+
+        # calculate which player has won the game based on selected move
+        winner = -1
+        if p1 == "R" and p2 == "S":
+            winner = 0
+        elif p1 == "S" and p2 == "R":
+            winner = 1
+        elif p1 == "S" and p2 == "P":
+            winner = 0
+        elif p1 == "R" and p2 == "P":
+            winner = 1
+        elif p1 == "P" and p2 == "S":
+            winner = 1
+        elif p1 == "P" and p2 == "R":
+            winner = 0
+
         return winner
 
     def reset(self):
+        self.p1_went = False
+        self.p2_went = False
+
+    def softreset(self):
         self.p1_went = False
         self.p2_went = False
