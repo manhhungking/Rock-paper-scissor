@@ -321,6 +321,7 @@ def main(network):
             )
             pygame.display.update()
             time.sleep(3)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -330,12 +331,12 @@ def main(network):
                 for button in buttons:
                     if button.click(position) and game.connected():
                         if player == 0:
-                            if not game.p1_went:
+                            if game.p1_went is False:
                                 # check if player has not made a move
                                 # if not, send move to server
                                 network.send(button.text)
                         else:
-                            if not game.p2_went:
+                            if game.p2_went is False:
                                 # check if player has not made a move
                                 # if not, send move to server
                                 network.send(button.text)

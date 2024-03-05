@@ -7,20 +7,10 @@ class Game:
         self.moves = [None, None]
         self.wins = [0, 0]
         self.draws = 0
+        self.start = False
 
     def get_player_move(self, player):
-        """ "
-        :param player [0, 1]
-        :return Move
-        """
         return self.moves[player]
-
-    # def play(self, player, move):
-    #     self.moves[player] = move
-    #     if player == 0:
-    #         self.p1_went = True
-    #     else:
-    #         self.p2_went = True
 
     def connected(self):
         return self.ready
