@@ -15,12 +15,12 @@ class Game:
         """
         return self.moves[player]
 
-    # def play(self, player, move):
-    #     self.moves[player] = move
-    #     if player == 0:
-    #         self.p1_went = True
-    #     else:
-    #         self.p2_went = True
+    def play(self, player, move):
+        self.moves[player] = move
+        if player == 0:
+            self.p1_went = True
+        else:
+            self.p2_went = True
 
     def connected(self):
         return self.ready
