@@ -1,3 +1,6 @@
+import threading
+
+
 class Game:
     def __init__(self, id):
         self.p1_went = False
@@ -8,11 +11,14 @@ class Game:
         self.wins = [0, 0]
         self.draws = 0
         self.start = False
+        self.updated = False
+        # self.lock = threading.Lock()
 
     def get_player_move(self, player):
         return self.moves[player]
 
     def play(self, player, move):
+        # with self.lock:
         if move == "random":
             return
         self.moves[player] = move
@@ -28,6 +34,7 @@ class Game:
         return self.p1_went and self.p2_went
 
     def winner(self):
+        # with self.lock:
         p1 = self.moves[0].upper()[0]
         p2 = self.moves[1].upper()[0]
 
@@ -45,10 +52,12 @@ class Game:
             winner = 1
         elif p1 == "P" and p2 == "R":
             winner = 0
-        if winner == -1:
-            self.draws += 1
-        else:
-            self.wins[winner] += 1
+        if self.updated == False:
+            if winner == -1:
+                self.draws += 1
+            else:
+                self.wins[winner] += 1
+            self.updated = True
         print(self.wins, self.draws)
         return winner
 
@@ -73,10 +82,23 @@ class Game:
 
         return winner
 
-    def reset(self):
-        self.p1_went = False
-        self.p2_went = False
-
     def softreset(self):
         self.p1_went = False
         self.p2_went = False
+        self.updated = False
+
+    def hardreset(self):
+        self.p1_went = False
+        self.p2_went = False
+        self.moves = [None, None]
+        self.wins = [0, 0]
+        self.draws = 0
+
+    def check_end(self):
+        if self.wins[0] >= 3:
+            print("Game ended")
+            return 0
+        elif self.wins[1] >= 3:
+            print("Game ended")
+            return 1
+        return -1

@@ -304,17 +304,16 @@ def main(network):
                 break
 
             font = pygame.font.SysFont("verdana", 90)
-            if player == 1:
-                game = network.send("find-winner")
+            game = network.send("find-winner")
             winner = game.find_winner()
             if (winner == 1 and player == 1) or (winner == 0 and player == 0):
-                text = font.render("You Win!", 1, (207, 181, 59))
+                text = font.render("Win!", 1, (207, 181, 59))
 
             elif winner == -1:
                 text = font.render("Draw!", 1, (211, 211, 211))
 
             else:
-                text = font.render("You Lose!", 1, (194, 26, 26))
+                text = font.render("Lose!", 1, (194, 26, 26))
 
             window.blit(
                 text,
@@ -322,7 +321,34 @@ def main(network):
             )
             pygame.display.update()
             time.sleep(3)
-            network.send("soft-reset")
+            if game.check_end() == -1:
+                network.send("soft-reset")
+            if game.check_end() == player:
+                re_draw_window(window, game, player)
+                text = font.render("You Win!", 1, (207, 181, 59))
+                window.blit(
+                    text,
+                    (
+                        WIDTH / 2 - text.get_width() / 2,
+                        HEIGHT / 2 - text.get_height() / 2,
+                    ),
+                )
+                pygame.display.update()
+                time.sleep(3)
+                network.send("hard-reset")
+            elif game.check_end() == 1 - player:
+                re_draw_window(window, game, player)
+                text = font.render("You lose!", 1, (194, 26, 26))
+                window.blit(
+                    text,
+                    (
+                        WIDTH / 2 - text.get_width() / 2,
+                        HEIGHT / 2 - text.get_height() / 2,
+                    ),
+                )
+                pygame.display.update()
+                time.sleep(3)
+                network.send("hard-reset")
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

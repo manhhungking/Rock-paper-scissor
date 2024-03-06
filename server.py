@@ -31,16 +31,16 @@ def threaded_client(conn, player, game_id):
                 if not data:
                     break
                 else:
-                    if data == "reset":
-                        game.reset()
-                    elif data == "soft-reset":
+                    if data == "soft-reset":
                         game.softreset()
+                    elif data == "hard-reset":
+                        game.hardreset()
                     elif data == "find-winner":
                         game.winner()
                     elif data != "get":
                         print("Data: ", data)
                         game.play(player, data)
-
+                        # with game.lock:
                     conn.sendall(pickle.dumps(game))
             else:
                 break
