@@ -58,7 +58,7 @@ class Game:
             else:
                 self.wins[winner] += 1
             self.updated = True
-        print(self.wins, self.draws)
+        print(self.wins, self.draws, self.id)
         return winner
 
     def find_winner(self):
