@@ -135,8 +135,8 @@ def re_draw_window(win, game, player):
         move2 = game.get_player_move(1)
 
         if game.both_went():
-            text1 = font.render(move1, 1, (203, 229, 255))
-            text2 = font.render(move2, 1, (203, 229, 255))
+            text1 = font.render(move1, 1, (0, 102, 102))
+            text2 = font.render(move2, 1, (0, 102, 102))
         else:
             # check if we need to hide opponents move
             if game.p1_went and player == 0:

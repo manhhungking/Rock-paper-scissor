@@ -66,21 +66,69 @@ Detailed description of the system functionality and how to run the implementati
 Instructions on setting up your project locally:
 **How to Run the Server**
 
+Open `settings.py` and change the IP to the network IP of the device running the server and change the PORT number to any open port as desired such as `ip = <Your Local Network IP address>` and `port = <CHOSEN PORT NUMBER>`.
+
 ```
 $ git clone https://github.com/manhhungking/Rock-paper-scissor.git
-$ cd Rock-Paper-Scissors
+$ cd Rock-paper-scissor
 $ python server.py
 ```
 
-Open `settings.py` and change the IP to the network IP of the device running the server and change the PORT number to any open port as desired such as `ip = <Your Local Network IP address>` and `port = <CHOSEN PORT NUMBER>`.
-
 **How to Run the Client**
 
-Run infinte instances of the terminal - 2 clients have to open and connected to start a game
+Run as many instances for the clients as you want using the terminals. At least 2 clients have to be opened and connected to start a game
 
 ```
 $ python client.py
 ```
+
+**Demo**
+
+##### One client connected and ready to play, One client open
+
+<p align="center">
+  <img alt="Waiting to connect and launch screen" src="image.png" width=500 height=500>
+</p>
+
+##### Instruction on gameplay after clicking on "Ready to play" screen
+
+<p align="center">
+  <img alt="Instruction on gameplay" src="image-1.png" width=500 height=500>
+</p>
+
+##### 2 client screens after successfully connecting
+
+<p align="center">
+  <img alt="2 client screens after successfully connecting" src="image-2.png" width=1000 height=500>
+</p>
+
+##### 1 client has made a move, the other doesn't
+
+<p align="center">
+  <img alt="One client has made a move, waiting for the other client" src="image-3.png" width=1000 height=500>
+</p>
+
+##### Both players have made a move and score is updated
+
+<p align="center">
+  <img alt="Both players have made their move" src="image-4.png" width=1000 height=500>
+</p>
+
+<p align="center">
+  <img alt="Score is updated" src="image-5.png" width=1000 height=500>
+</p>
+
+##### When one player reach 3 wins first
+
+<p align="center">
+  <img alt="When a player wins" src="image-6.png" width=1000 height=500>
+</p>
+
+##### Game is refresh
+
+<p align="center">
+  <img alt="When a player wins" src="image-7.png" width=1000 height=500>
+</p>
 
 ## Results of the tests:
 
@@ -106,5 +154,5 @@ Collect numerical data of test cases:
 We would like to express our gratitude to the following individuals and organizations for their contributions to this project:
 
 - **David Barclay**: For providing the initial implementation and inspiration for the multiplayer Rock-Paper-Scissors game. [GitHub](https://github.com/barclayd/Multiplayer-Rock-Paper-Scissors)
-- **GitHub Community**: For their valuable feedback, suggestions, and contributions to the project repository.
 - **Stack Overflow**: For providing a wealth of knowledge and resources that helped address technical challenges encountered during the development process.
+- **Teacher and T.A Tri**: For their guidance, support throughout the duration of the project.
