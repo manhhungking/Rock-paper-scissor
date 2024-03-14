@@ -103,4 +103,8 @@ Collect numerical data of test cases:
 
 ## Acknowledgments:
 
-list resources you find helpful
+We would like to express our gratitude to the following individuals and organizations for their contributions to this project:
+
+- **David Barclay**: For providing the initial implementation and inspiration for the multiplayer Rock-Paper-Scissors game. [GitHub](https://github.com/barclayd/Multiplayer-Rock-Paper-Scissors)
+- **GitHub Community**: For their valuable feedback, suggestions, and contributions to the project repository.
+- **Stack Overflow**: For providing a wealth of knowledge and resources that helped address technical challenges encountered during the development process.

@@ -110,12 +110,26 @@ def re_draw_window(win, game, player):
             text, (WIDTH / 2 - text.get_width() / 2, HEIGHT / 2 - text.get_height() / 2)
         )
     else:
+        font1 = pygame.font.SysFont("verdana", 28)
         font = pygame.font.SysFont("verdana", 36)
+        if player == 0:
+            wins = game.wins[0]
+            loses = game.wins[1]
+        else:
+            wins = game.wins[1]
+            loses = game.wins[0]
+
+        text_wins = font1.render("Wins: {}".format(wins), 1, (0, 0, 0))
+        text_loses = font1.render("Loses: {}".format(loses), 1, (0, 0, 0))
+        text_draws = font1.render("Draws: {}".format(game.draws), 1, (0, 0, 0))
+        window.blit(text_wins, (WIDTH // 2 - 200, 50))
+        window.blit(text_loses, (WIDTH // 2 - 50, 50))
+        window.blit(text_draws, (WIDTH // 2 + 95, 50))
         text = font.render("Your Move", 1, (35, 49, 179))
-        win.blit(text, (80, 200))
+        win.blit(text, (100, 200))
 
         text = font.render("Opponent's", 1, (35, 49, 179))
-        win.blit(text, (380, 200))
+        win.blit(text, (400, 200))
 
         move1 = game.get_player_move(0)
         move2 = game.get_player_move(1)
@@ -157,9 +171,9 @@ enter_id_button = Button(
 )
 
 buttons = [
-    Button("Rock", WIDTH // 4, 500, 150, 100, (183, 0, 16)),
-    Button("Scissors", WIDTH // 2, 500, 150, 100, (49, 189, 133)),
-    Button("Paper", 3 * WIDTH // 4, 500, 150, 100, (14, 99, 247)),
+    Button("Rock", 180, 500, 150, 100, (226, 164, 153)),
+    Button("Scissors", 365, 500, 150, 100, (49, 189, 133)),
+    Button("Paper", 550, 500, 150, 100, (14, 99, 247)),
 ]
 
 input_box = InputBox(WIDTH // 2 - 150, 450, 300, 50)
@@ -302,8 +316,10 @@ def main(network):
                 break
 
             font = pygame.font.SysFont("verdana", 90)
-            game = network.send("find-winner")
+            if player == 0:
+                game = network.send("find-winner")
             winner = game.find_winner()
+
             if (winner == 1 and player == 1) or (winner == 0 and player == 0):
                 text = font.render("Win!", 1, (207, 181, 59))
 
@@ -315,7 +331,7 @@ def main(network):
 
             window.blit(
                 text,
-                (WIDTH / 2 - text.get_width() / 2, HEIGHT / 2 - text.get_height() / 2),
+                (WIDTH / 2 - text.get_width() / 2, HEIGHT / 2 - text.get_height()),
             )
             pygame.display.update()
             time.sleep(3)
@@ -323,12 +339,12 @@ def main(network):
             #     network.send("soft-reset")
             if game.check_end() == player:
                 re_draw_window(window, game, player)
-                text = font.render("You Win!", 1, (207, 181, 59))
+                text = font.render("You Win!", 1, (232, 181, 59))
                 window.blit(
                     text,
                     (
                         WIDTH / 2 - text.get_width() / 2,
-                        HEIGHT / 2 - text.get_height() / 2,
+                        HEIGHT / 2 - text.get_height(),
                     ),
                 )
                 pygame.display.update()
@@ -341,7 +357,7 @@ def main(network):
                     text,
                     (
                         WIDTH / 2 - text.get_width() / 2,
-                        HEIGHT / 2 - text.get_height() / 2,
+                        HEIGHT / 2 - text.get_height(),
                     ),
                 )
                 pygame.display.update()
