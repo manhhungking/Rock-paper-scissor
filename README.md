@@ -1,35 +1,69 @@
-# Online Multiplayer Rock Paper Scissors
+# Industry track
 
-Online Multiplayer Rock Paper Scissors game connected to a Linux server. Built using Python
+# Student List:
 
-### Demo
+| Group Member  | Student ID | Email                         | Chosen destiny |
+| ------------- | ---------- | ----------------------------- | -------------- |
+| Hung Trinh    | 2307229    | Hung.TRINH@student.oulu.fi    | Corporate      |
+| Mazen Hassaan | 2307227    | Mazen.Hassaan@student.oulu.fi | Corporate      |
+| Umer Yaseen   | 2307645    | Umer.Yaseen@student.oulu.fi   | Corporate      |
+| Ida Haataja   | Y69019019  | ida.haataja@student.oulu.fi   | Corporate      |
 
-##### One client connected and ready to play, One client open
+## Project Title
 
-<p align="center">
-  <img alt="Waiting to connect and launch screen" src='https://user-images.githubusercontent.com/39765499/56475369-16f09300-647f-11e9-883b-d9ca04962d82.png'>
-</p>
+Multiplayer Rock, Paper, Scissors Game
 
-##### One client has made a move, other client is yet to move
+## About the project
 
-<p align="center">
-  <img alt="One client has made a move, waiting for the other client" src='https://user-images.githubusercontent.com/39765499/56475365-10621b80-647f-11e9-87c6-a4656b21f178.png'>
-</p>
+### Course Project Overview
 
-##### Both players have made a move
+The project aims to design and implement a distributed system used for a multiplayer Rock, Paper, Scissors game. The software and system architecture aim to address key distributed system functionalities, including synchronization algorithms, resource naming and sharing mechanisms, and secure communication. The application involves smart IoT devices acting as game nodes, a central server managing game state and communication, and features request queuing and prioritization based on game conditions.
 
-<p align="center">
-  <img alt="Both players have made their move" src='https://user-images.githubusercontent.com/39765499/56475367-13f5a280-647f-11e9-8ae2-7a0fb69735bf.png'>
-</p>
+### Project Objectives
 
-### Features
+- Design and implement a distributed system for a multiplayer Rock, Paper, Scissors game.
+- Implement synchronization algorithms to ensure real-time gameplay between players.
+- Develop resource naming and sharing mechanisms to manage game state and communication.
+- Implement secure communication protocols to protect sensitive player data.
+- Utilize smart IoT devices as game nodes to enhance gameplay experience and interactivity.
 
-- Scalable game - allows for multiple client games running simultaneously
-- GUI
-- Use of secure, shared server to facilitate game play
+### Expected Outcomes
 
-### How to Run
+- A functional multiplayer Rock, Paper, Scissors game accessible to players from different locations.
+- Real-time gameplay experience with immediate feedback on match results.
+- Efficient resource utilization and scalability through load balancing mechanisms.
+- Secure communication channels to protect player data and ensure privacy.
+- Demonstrated application of distributed system principles in building responsive and scalable gaming applications.
 
+## Implemented components:
+
+Detailed description of the system architecture (Application-specific system components):
+
+- System must have at least three nodes (e.g, containers)
+- Each node must have a role: client, server, peer, broker, etc.
+
+Participating nodes must:
+
+- Exchange information (messages): RPC, client-server, publish/subscribe, broadcast, streaming, etc.
+- Log their behavior understandably: messages, events, actions, etc.
+
+Nodes (or their roles) do not have to be identical
+For example, one acts as server, broker, monitor / admin, etc.
+Each node must be an independent entity and (partially) autonomous
+
+Detailed descriptions of relevant principles covered in the course (architecture, processes, communication, naming, synchronization, consistency and replication, fault tolerance); irrelevant principles can be left out.
+
+## Built with:
+
+Detailed description of the system functionality and how to run the implementation
+
+- If you are familiar with a particular container technology, feel free to use it (Docker is not mandatory)
+- Any programming language can be used, such as: Python, Java, JavaScript, ..
+- Any communication protocol / Internet protocol suite can be used: HTTP(S), MQTT, AMQP, CoAP, ..
+
+## Getting Started:
+
+Instructions on setting up your project locally:
 **How to Run the Server**
 
 ```
@@ -48,7 +82,25 @@ Run infinte instances of the terminal - 2 clients have to open and connected to 
 $ python client.py
 ```
 
-### Future Improvements:
+## Results of the tests:
 
-- Use of images
-- Save of high scores
+Detailed description of the system evaluation
+Evaluate your implementation using selected criteria, for example:
+
+- Number of messages / lost messages, latencies, ...
+- Request processing with different payloads, ..
+- System throughput, ..
+
+Design two evaluation scenarios that you compare with each other, for example:
+
+- Small number / large number of messages
+- Small payload / big payload
+
+Collect numerical data of test cases:
+
+- Collecting logs of container operations
+- Conduct simple analysis for documentation purposes (e.g. plots or graphs)
+
+## Acknowledgments:
+
+list resources you find helpful
