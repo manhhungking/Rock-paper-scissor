@@ -87,47 +87,47 @@ $ python client.py
 ##### One client connected and ready to play, One client open
 
 <p align="center">
-  <img alt="Waiting to connect and launch screen" src="image.png" width=500 height=500>
+  <img alt="Waiting to connect and launch screen" src="./images/image.png" width=500 height=500>
 </p>
 
 ##### Instruction on gameplay after clicking on "Ready to play" screen
 
 <p align="center">
-  <img alt="Instruction on gameplay" src="image-1.png" width=500 height=500>
+  <img alt="Instruction on gameplay" src="./images/image-1.png" width=500 height=500>
 </p>
 
 ##### 2 client screens after successfully connecting
 
 <p align="center">
-  <img alt="2 client screens after successfully connecting" src="image-2.png" width=1000 height=500>
+  <img alt="2 client screens after successfully connecting" src="./images/image-2.png" width=1000 height=500>
 </p>
 
 ##### 1 client has made a move, the other doesn't
 
 <p align="center">
-  <img alt="One client has made a move, waiting for the other client" src="image-3.png" width=1000 height=500>
+  <img alt="One client has made a move, waiting for the other client" src="./images/image-3.png" width=1000 height=500>
 </p>
 
 ##### Both players have made a move and score is updated
 
 <p align="center">
-  <img alt="Both players have made their move" src="image-4.png" width=1000 height=500>
+  <img alt="Both players have made their move" src="./images/image-4.png" width=1000 height=500>
 </p>
 
 <p align="center">
-  <img alt="Score is updated" src="image-5.png" width=1000 height=500>
+  <img alt="Score is updated" src="./images/image-5.png" width=1000 height=500>
 </p>
 
 ##### When one player reach 3 wins first
 
 <p align="center">
-  <img alt="When a player wins" src="image-6.png" width=1000 height=500>
+  <img alt="When a player wins" src="./images/image-6.png" width=1000 height=500>
 </p>
 
 ##### Game is refresh
 
 <p align="center">
-  <img alt="When a player wins" src="image-7.png" width=1000 height=500>
+  <img alt="When a player wins" src="./images/image-7.png" width=1000 height=500>
 </p>
 
 ## Results of the tests:
