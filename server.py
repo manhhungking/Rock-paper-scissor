@@ -1,4 +1,5 @@
 import socket
+import time
 from game import Game
 from _thread import *
 import pickle
@@ -34,7 +35,7 @@ class Server:
 
             id_count += 1
             game_id = (id_count - 1) // 2
-            print("A new client of name:",f"{game_id}/{(id_count+1) % 2}")
+            print("A new client of name:", f"{game_id}/{(id_count+1) % 2}")
             print("THE ID_COUNT IS : ", id_count)
 
             if id_count % 4 == 0:
@@ -42,7 +43,9 @@ class Server:
                 # This condition assigns a single server to each 4 clients (one server per two games)
                 print("NOW A NEW SERVER IS BEING INSTANTIATED")
                 new_server = Server(self.ip, (self.port + self.port_handler))
-                start_new_thread(new_server.run, ())  # Start the new server instance in a new thread
+                start_new_thread(
+                    new_server.run, ()
+                )  # Start the new server instance in a new thread
 
             current_player = 0
 
@@ -61,6 +64,7 @@ class Server:
         while True:
             try:
                 data = conn.recv(4096).decode()
+                request_received_time = time.time()
                 if game_id in self.games:
                     game = self.games[game_id]
                     if not data:
@@ -75,7 +79,14 @@ class Server:
                         elif data != "get":
                             print("Data: ", data)
                             game.play(player, data)
+
                     conn.sendall(pickle.dumps(game))
+                    # Get the current timestamp after sending the response
+                    response_sent_time = time.time()
+
+                    # Calculate the latency
+                    latency = response_sent_time - request_received_time
+                    print("Latency: ", latency)
                 else:
                     break
             except:
