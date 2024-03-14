@@ -17,41 +17,41 @@ Multiplayer Rock, Paper, Scissors Game
 
 ### Course Project Overview
 
-The project aims to design and implement a distributed system used for a multiplayer Rock, Paper, Scissors game. The software and system architecture aim to address key distributed system functionalities, including synchronization algorithms, resource naming and sharing mechanisms, and secure communication. The application involves smart IoT devices acting as game nodes, a central server managing game state and communication, and features request queuing and prioritization based on game conditions.
+The project aims to design and implement a distributed system used for a multiplayer Rock, Paper, Scissors game. The software and system architecture aim to address key distributed system functionalities learned throughout the course. The main goal of this project is to effectively tackle the fundamental functionalities inherent in distributed systems, drawing upon the comprehensive knowledge acquired throughout the duration of the course. The application clients acting as game nodes, a central server managing game state and communication, and the ability of server replication based on the load request and game conditions.
 
 ### Project Objectives
 
 - Design and implement a distributed system for a multiplayer Rock, Paper, Scissors game.
-- Implement synchronization algorithms to ensure real-time gameplay between players.
-- Develop resource naming and sharing mechanisms to manage game state and communication.
-- Implement secure communication protocols to protect sensitive player data.
-- Utilize smart IoT devices as game nodes to enhance gameplay experience and interactivity.
+- Implement a straightforward method for clients to establish real-time connections with the server in a straightforward manner.
+- Develop a simple resource naming mechanism and sharing mechanisms to manage game state and communication.
+- Create a basic load balancing mechanism for the server node through replication.
+- Modify a somewhat centralized organizational software architecture to facilitate vertical communication between the server and the clients.
 
 ### Expected Outcomes
 
-- A functional multiplayer Rock, Paper, Scissors game accessible to players from different locations.
+- A simple functional multiplayer Rock, Paper, Scissors game accessible to players from different locations.
 - Real-time gameplay experience with immediate feedback on match results.
 - Efficient resource utilization and scalability through load balancing mechanisms.
-- Secure communication channels to protect player data and ensure privacy.
 - Demonstrated application of distributed system principles in building responsive and scalable gaming applications.
+- Building a robust foundation for a game that is scalable and can be further expanded upon in the future.
 
 ## Implemented components:
 
-Detailed description of the system architecture (Application-specific system components):
+  The system is structured around a Centralized logical organization, characterized by vertical communication between the server and clients. It supports multiple server and client nodes, enabling scalability. The system can have as many server nodes as it needs and as many client nodes as possible. Due to this nature, a replication mechanism aimed for load balancing was implemented, which will be discussed in detail later.
 
-- System must have at least three nodes (e.g, containers)
-- Each node must have a role: client, server, peer, broker, etc.
+Each node functions either as a server or a client out of two clients that initiate a game, with two clients required to initiate a game.
+Each connected server and client operates as a somewhat independent entity with partial autonomy. However, given the game's requirements for full engagement among all nodes involved in a game, the failure of one node results in the failure of the entire system, or instance of the game.
 
-Participating nodes must:
+  In this client-server architecture project, nodes communicate by exchanging messages facilitated by the network, which is implemented as an object of itself within the system.
+The client sends a variety of messages such as hard-reset, soft-reset, find-winner, and the chosen move itself, via the network interface to the server. The server then receives and processes these messages based on the data they contain.
 
-- Exchange information (messages): RPC, client-server, publish/subscribe, broadcast, streaming, etc.
-- Log their behavior understandably: messages, events, actions, etc.
+Also, a simlpe straightforward logging process is incorporated, where the server monitors newly connected clients and any instances of server replication. The server logs these operations information in a clear and easily comprehensible way.
 
-Nodes (or their roles) do not have to be identical
-For example, one acts as server, broker, monitor / admin, etc.
-Each node must be an independent entity and (partially) autonomous
-
-Detailed descriptions of relevant principles covered in the course (architecture, processes, communication, naming, synchronization, consistency and replication, fault tolerance); irrelevant principles can be left out.
+Relevant principles covered in the course:
+- Message transmission between nodes via a clearly defined interface, ensuring strong familiarity with application semantics between clients and the server. Additionally, continuous communication is maintained between nodes through socket interfaces.
+- Implementation of replication to enhance availability, particularly when accommodating a large number of players, and to effectively manage load balancing. Despite the simplicity of the program, it serves as an implementation of the replication concept itself.
+- The system architecture follows a Centralized Logical Organization with a vertical structure, where clients adhere to a request/reply model. Newly generated servers, stemming from replication, adopt a concurrent multithreaded server approach. Initially, there exists a single entry server to the application, which then spawns server instances based on the number of connecting clients.
+- A straightforward naming mechanism is also established, assigning each client a unique and non-repetitive name regardless of their connection to the server. This structured naming convention adopts the format: game_id/client_id_within_game. This simplicity in naming aims to support the project's goal of serving as a foundational building stone for future scalability, extensibility, and feature integration.
 
 ## Built with:
 
