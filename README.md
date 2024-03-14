@@ -182,6 +182,6 @@ We can't plot a graph because all of the data was printed out in terminal for lo
 
 We would like to express our gratitude to the following individuals and organizations for their contributions to this project:
 
-- **David Barclay**: For providing the initial implementation and inspiration for the multiplayer Rock-Paper-Scissors game. [GitHub](https://github.com/barclayd/Multiplayer-Rock-Paper-Scissors)
+- **Daniel Barclay**: For providing the initial implementation and inspiration for the multiplayer Rock-Paper-Scissors game. [GitHub](https://github.com/barclayd/Multiplayer-Rock-Paper-Scissors)
 - **Stack Overflow**: For providing a wealth of knowledge and resources that helped address technical challenges encountered during the development process.
 - **Teacher and T.A Tri**: For their guidance, support throughout the duration of the project.
