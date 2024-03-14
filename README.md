@@ -176,8 +176,6 @@ For each evaluation scenario, the following data were collected:
 
 Upon collecting the test case data, we take a look at message volumes, latencies, request processing times, and system throughput under different test conditions. Then we can tell that the results of the evaluation are pretty good, and it provide insights into the system's scalability, reliability, and responsiveness, aiding in further optimizations and enhancements for future iterations.
 
-We can't plot a graph because all of the data was printed out in terminal for looking purpose but not saved to an excel file.
-
 ## Acknowledgments:
 
 We would like to express our gratitude to the following individuals and organizations for their contributions to this project:
