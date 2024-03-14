@@ -184,4 +184,4 @@ We would like to express our gratitude to the following individuals and organiza
 
 - **Daniel Barclay**: For providing the initial implementation and inspiration for the multiplayer Rock-Paper-Scissors game. [GitHub](https://github.com/barclayd/Multiplayer-Rock-Paper-Scissors)
 - **Stack Overflow**: For providing a wealth of knowledge and resources that helped address technical challenges encountered during the development process.
-- **Teacher and T.A Tri**: For their guidance, support throughout the duration of the project.
+- **Teacher and T.A Tri Nguyen**: For their guidance, support throughout the duration of the project.
