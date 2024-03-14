@@ -1,6 +1,6 @@
 # Industry track
 
-# Student List:
+## Student List:
 
 | Group Member  | Student ID | Email                         | Chosen destiny |
 | ------------- | ---------- | ----------------------------- | -------------- |
