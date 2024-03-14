@@ -321,8 +321,8 @@ def main(network):
             )
             pygame.display.update()
             time.sleep(3)
-            if game.check_end() == -1:
-                network.send("soft-reset")
+            # if game.check_end() == -1:
+            #     network.send("soft-reset")
             if game.check_end() == player:
                 re_draw_window(window, game, player)
                 text = font.render("You Win!", 1, (207, 181, 59))

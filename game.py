@@ -12,6 +12,8 @@ class Game:
         self.draws = 0
         self.start = False
         self.updated = False
+
+        # Add a lock for thread safety
         # self.lock = threading.Lock()
 
     def get_player_move(self, player):

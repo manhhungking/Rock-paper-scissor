@@ -36,6 +36,7 @@ def threaded_client(conn, player, game_id):
                     elif data == "hard-reset":
                         game.hardreset()
                     elif data == "find-winner":
+                        
                         game.winner()
                     elif data != "get":
                         print("Data: ", data)
