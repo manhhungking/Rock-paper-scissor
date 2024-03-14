@@ -27,7 +27,7 @@ class Button:
     def draw(self, win):
         pygame.draw.rect(win, self.colour, (self.x, self.y, self.width, self.height))
         font = pygame.font.SysFont("verdana", 20)
-        text = font.render(self.text, 1, (255, 255, 255))
+        text = font.render(self.text, 1, (255, 255, 224))
         text_width, text_height = text.get_size()
 
         win.blit(
@@ -99,23 +99,22 @@ class InputBox:
 
 # functions
 def re_draw_window(win, game, player):
-    win.fill((0, 13, 26))
+    # win.fill((0, 13, 26))
+    win.fill((144, 199, 255))
 
     if not (game.connected()):
         # other player is yet to connect
         font = pygame.font.SysFont("verdana", 36)
-        text = font.render(
-            "Waiting for both players to connect...", 1, (0, 77, 153), True
-        )
+        text = font.render("Waiting for another player...", (255, 255, 255), True)
         win.blit(
             text, (WIDTH / 2 - text.get_width() / 2, HEIGHT / 2 - text.get_height() / 2)
         )
     else:
         font = pygame.font.SysFont("verdana", 36)
-        text = font.render("Your Move", 1, (0, 255, 255))
+        text = font.render("Your Move", 1, (35, 49, 179))
         win.blit(text, (80, 200))
 
-        text = font.render("Opponent's", 1, (0, 255, 255))
+        text = font.render("Opponent's", 1, (35, 49, 179))
         win.blit(text, (380, 200))
 
         move1 = game.get_player_move(0)
@@ -158,9 +157,9 @@ enter_id_button = Button(
 )
 
 buttons = [
-    Button("Rock", WIDTH // 4, 500, 150, 100, (51, 102, 0)),
-    Button("Scissors", WIDTH // 2, 500, 150, 100, (0, 51, 102)),
-    Button("Paper", 3 * WIDTH // 4, 500, 150, 100, (102, 0, 51)),
+    Button("Rock", WIDTH // 4, 500, 150, 100, (183, 0, 16)),
+    Button("Scissors", WIDTH // 2, 500, 150, 100, (49, 189, 133)),
+    Button("Paper", 3 * WIDTH // 4, 500, 150, 100, (14, 99, 247)),
 ]
 
 input_box = InputBox(WIDTH // 2 - 150, 450, 300, 50)
@@ -188,18 +187,19 @@ def introduction_screen():
         window.blit(text2, (WIDTH / 2 - text2.get_width() / 2, 100))
         window.blit(text3, (WIDTH / 2 - text3.get_width() / 2, 150))
 
-        # Display buttons for options
+        instruction_image = pygame.image.load("Rock-paper-scissors.png")
+        instruction_image_scaled = pygame.transform.scale(instruction_image, (400, 400))
+        image_rect = instruction_image_scaled.get_rect()
+        image_rect.center = (350, 400)  # center image
+        window.blit(instruction_image_scaled, image_rect)
+
         button_font = pygame.font.SysFont("verdana", 24)
 
         play_random_button = Button(
-            "Play with a random player", WIDTH / 2, 300, 300, 50, (51, 102, 0)
+            "Play with a random player", WIDTH / 2, 640, 300, 50, (51, 102, 0)
         )
-        play_random_button.draw(window)
 
-        enter_id_button = Button(
-            "Enter the ID of the player", WIDTH / 2, 450, 300, 50, (102, 0, 51)
-        )
-        enter_id_button.draw(window)
+        play_random_button.draw(window)
 
         pygame.display.update()
 
@@ -212,8 +212,6 @@ def introduction_screen():
                 position = pygame.mouse.get_pos()
                 if play_random_button.click(position):
                     return "random"
-                elif enter_id_button.click(position):
-                    return "id"
 
 
 def menu_screen(network):
@@ -247,8 +245,8 @@ def menu_screen(network):
 
         window.fill((144, 199, 255))
 
-        font = pygame.font.SysFont("verdana", 60)
-        text = font.render("Click to Play!", 1, (0, 5, 10))
+        font = pygame.font.SysFont("verdana", 40)
+        text = font.render("Click anywhere to play!", 1, (0, 5, 10))
         window.blit(
             text, (WIDTH / 2 - text.get_width() / 2, HEIGHT / 2 - text.get_height() / 2)
         )
