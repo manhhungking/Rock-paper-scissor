@@ -316,6 +316,7 @@ def main(network):
                 break
 
             font = pygame.font.SysFont("verdana", 90)
+            # request_sent_time = time.time()
             if player == 0:
                 game = network.send("find-winner")
             winner = game.find_winner()
@@ -334,9 +335,14 @@ def main(network):
                 (WIDTH / 2 - text.get_width() / 2, HEIGHT / 2 - text.get_height()),
             )
             pygame.display.update()
+            # Get the current timestamp after receiving the response
+            response_received_time = time.time()
+
+            # Calculate the latency
+            # latency = response_received_time - request_sent_time
+            # print("Latency time: ", latency)
             time.sleep(3)
-            # if game.check_end() == -1:
-            #     network.send("soft-reset")
+
             if game.check_end() == player:
                 re_draw_window(window, game, player)
                 text = font.render("You Win!", 1, (232, 181, 59))
