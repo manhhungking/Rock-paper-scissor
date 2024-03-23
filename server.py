@@ -4,6 +4,7 @@ from game import Game
 from _thread import *
 import pickle
 from settings import ip, port
+import threading
 
 # Define id_count as a global variable (it keeps track of the currently new joined clients)
 id_count = 0
@@ -17,6 +18,7 @@ class Server:
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.connected = set()
         self.games = {}
+        self.locks = {}  # Dictionary to store locks for each game_id
 
     def run(self):
         global id_count
@@ -50,10 +52,15 @@ class Server:
             current_player = 0
 
             if id_count % 2 == 1:
+                self.locks[game_id] = threading.Lock()  # Create a lock for this game_id
+                self.locks[game_id].acquire()  # Acquire lock before accessing game data
                 self.games[game_id] = Game(game_id)
+                self.locks[game_id].release()  # Release lock after accessing game data
                 print("Created a new game of id: ", game_id)
             else:
+                self.locks[game_id].acquire()  # Acquire lock before accessing game data
                 self.games[game_id].ready = True
+                self.locks[game_id].release()  # Release lock after accessing game data
                 current_player = 1
 
             start_new_thread(self.threaded_client, (conn, current_player, game_id))
@@ -64,10 +71,13 @@ class Server:
         while True:
             try:
                 data = conn.recv(4096).decode()
-                request_received_time = time.time()
                 if game_id in self.games:
+                    self.locks[
+                        game_id
+                    ].acquire()  # Acquire lock before accessing game data
                     game = self.games[game_id]
                     if not data:
+                        self.locks[game_id].release()  # Release lock if no data
                         break
                     else:
                         if data == "soft-reset":
@@ -79,14 +89,10 @@ class Server:
                         elif data != "get":
                             print("Data: ", data)
                             game.play(player, data)
-
                     conn.sendall(pickle.dumps(game))
-                    # Get the current timestamp after sending the response
-                    response_sent_time = time.time()
-
-                    # Calculate the latency
-                    latency = response_sent_time - request_received_time
-                    print("Latency: ", latency)
+                    self.locks[
+                        game_id
+                    ].release()  # Release lock after accessing game data
                 else:
                     break
             except:
@@ -94,7 +100,10 @@ class Server:
 
         print("Lost connection with server")
         try:
+            self.locks[game_id].acquire()  # Acquire lock before accessing game data
             del self.games[game_id]
+            self.locks[game_id].release()  # Release lock after accessing game data
+            del self.locks[game_id]  # Remove lock for this game_id
             print("Closing game", game_id)
         except:
             pass
