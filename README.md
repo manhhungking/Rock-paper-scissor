@@ -37,17 +37,18 @@ The project aims to design and implement a distributed system used for a multipl
 
 ## Implemented components:
 
-  The system is structured around a Centralized logical organization, characterized by vertical communication between the server and clients. It supports multiple server and client nodes, enabling scalability. The system can have as many server nodes as it needs and as many client nodes as possible. Due to this nature, a replication mechanism aimed for load balancing was implemented, which will be discussed in detail later.
+The system is structured around a Centralized logical organization, characterized by vertical communication between the server and clients. It supports multiple server and client nodes, enabling scalability. The system can have as many server nodes as it needs and as many client nodes as possible. Due to this nature, a replication mechanism aimed for load balancing was implemented, which will be discussed in detail later.
 
 Each node functions either as a server or a client out of two clients that initiate a game, with two clients required to initiate a game.
 Each connected server and client operates as a somewhat independent entity with partial autonomy. However, given the game's requirements for full engagement among all nodes involved in a game, the failure of one node results in the failure of the entire system, or instance of the game.
 
-  In this client-server architecture project, nodes communicate by exchanging messages facilitated by the network, which is implemented as an object of itself within the system.
+In this client-server architecture project, nodes communicate by exchanging messages facilitated by the network, which is implemented as an object of itself within the system.
 The client sends a variety of messages such as hard-reset, soft-reset, find-winner, and the chosen move itself, via the network interface to the server. The server then receives and processes these messages based on the data they contain.
 
 Also, a simlpe straightforward logging process is incorporated, where the server monitors newly connected clients and any instances of server replication. The server logs these operations information in a clear and easily comprehensible way.
 
 Relevant principles covered in the course:
+
 - Message transmission between nodes via a clearly defined interface, ensuring strong familiarity with application semantics between clients and the server. Additionally, continuous communication is maintained between nodes through socket interfaces.
 - Implementation of replication to enhance availability, particularly when accommodating a large number of players, and to effectively manage load balancing. Despite the simplicity of the program, it serves as an implementation of the replication concept itself.
 - The system architecture follows a Centralized Logical Organization with a vertical structure, where clients adhere to a request/reply model. Newly generated servers, stemming from replication, adopt a concurrent multithreaded server approach. Initially, there exists a single entry server to the application, which then spawns server instances based on the number of connecting clients.
@@ -55,14 +56,12 @@ Relevant principles covered in the course:
 
 ## Built with:
 
-The project is developed using Python, employing an object-oriented approach where there's a server class, a client class, a game instance class and a  network class serving as the communication interface. The project also utilizes direct socket interface manipulation to communicate between the servers and the clients instances. The used internet communication protocol is TCP along with the needed IP configurations.
+The project is developed using Python, employing an object-oriented approach where there's a server class, a client class, a game instance class and a network class serving as the communication interface. The project also utilizes direct socket interface manipulation to communicate between the servers and the clients instances. The used internet communication protocol is TCP along with the needed IP configurations.
 
 - **The server class:** It initializes the server with the provided IP address and port number, along with other necessary attributes such as the socket and game instances. It binds the socket to the provided IP address and port, then listens for incoming connections from clients. It also handles the connection as upon connection from a client, it accepts the connection and assigns a unique identifier to the client. If necessary, it creates a new game instance. Threaded Client Handling is also supported where each connected client is handled in a separate thread to allow multiple clients to interact with the server simultaneously. It also serializes and sends the game state back to the clients using the Pickle module for data serialization
 - **The Client Class:** Mainly handles the user interface and the player interaction. It initializes the Pygame window and handles Pygame events such as mouse clicks to enable the interaction with the game interfaces, and it sets up the necessary components for the user interface. The button class included in the client is used to create interactive buttons on the screens of the users. The overall main function of the client class is that it handles the main game loop, including sending and receiving game data from the server, updating the game interface based on player actions, and displaying the game results.
 - **The Network Class:** The Network class serves as the communication interface betgween the client and server, enabling the exchang of game-related information in the real-time environment.
 - **The Game Class:** The Game class encapsulates the game logic implementation, allowing for the management of player moves, determination of winners, and tracking of game progress. It provides methods to record and retrieve relevant player moves within a game. It also provides methods to reset the game states, whether a soft reset (scope of one round) or a hard reset (scope of the whole game).
-
-
 
 ## Getting Started:
 
@@ -90,47 +89,47 @@ $ python client.py
 ##### One client connected and ready to play, One client open
 
 <p align="center">
-  <img alt="Waiting to connect and launch screen" src="https://i.im.ge/2024/03/15/R5kPhG.image.png" width=500 height=500>
+  <img alt="Waiting to connect and launch screen" src="./images/image.png" width=500 height=500>
 </p>
 
 ##### Instruction on gameplay after clicking on "Ready to play" screen
 
 <p align="center">
-  <img alt="Instruction on gameplay" src="https://i.im.ge/2024/03/15/R5kY1z.image-1.png" width=500 height=500>
+  <img alt="Instruction on gameplay" src="./images/image-1.png" width=500 height=500>
 </p>
 
 ##### 2 client screens after successfully connecting
 
 <p align="center">
-  <img alt="2 client screens after successfully connecting" src="https://i.im.ge/2024/03/15/R5kbw6.image-2.png" width=1000 height=400>
+  <img alt="2 client screens after successfully connecting" src="./images/image-2.png" width=1000 height=400>
 </p>
 
 ##### 1 client has made a move, the other doesn't
 
 <p align="center">
-  <img alt="One client has made a move, waiting for the other client" src="https://i.im.ge/2024/03/15/R5kcKF.image-3.png" width=1000 height=400>
+  <img alt="One client has made a move, waiting for the other client" src="./images/image-3.png" width=1000 height=400>
 </p>
 
 ##### Both players have made a move and score is updated
 
 <p align="center">
-  <img alt="Both players have made their move" src="https://i.im.ge/2024/03/15/R5kRi9.image-4.png" width=1000 height=400>
+  <img alt="Both players have made their move" src="./images/image-4.png" width=1000 height=400>
 </p>
 
 <p align="center">
-  <img alt="Score is updated" src="https://i.im.ge/2024/03/15/R5ktbx.image-5.png" width=1000 height=400>
+  <img alt="Score is updated" src="./images/image-5.png" width=1000 height=400>
 </p>
 
 ##### When one player reach 3 wins first
 
 <p align="center">
-  <img alt="When a player wins" src="https://i.im.ge/2024/03/15/R5kEAy.image-6.png" width=1000 height=400>
+  <img alt="When a player wins" src="./images/image-6.png" width=1000 height=400>
 </p>
 
 ##### Game is refresh
 
 <p align="center">
-  <img alt="When a player wins" src="https://i.im.ge/2024/03/15/R5kyGa.image-7.png" width=1000 height=400>
+  <img alt="When a player wins" src="./images/image-7.png" width=1000 height=400>
 </p>
 
 ## Results of the tests:
