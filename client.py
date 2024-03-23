@@ -298,6 +298,7 @@ def main(network):
     print("You are player number: {}".format(player))
 
     while run:
+        pygame.display.flip()
         clock.tick(60)
         try:
             game = network.send("get")
